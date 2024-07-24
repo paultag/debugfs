@@ -51,13 +51,32 @@ async fn main() -> anyhow::Result<()> {
     tracing::subscriber::set_global_default(subscriber).expect("setting default subscriber failed");
 
     let srv = AsyncServer::builder()
-        .with_tcp_listen_address("127.0.0.1:5640")
+        .with_tcp_listen_address("0.0.0.0:5641")
         .with_filesystem(
-            "unstable",
+            "unstable-amd64",
             Debug::new(
                 "http://archive.adref/debian-debug/",
                 "unstable-debug",
                 "main",
+                "amd64",
+            ),
+        )
+        .with_filesystem(
+            "unstable-arm64",
+            Debug::new(
+                "http://archive.adref/debian-debug/",
+                "unstable-debug",
+                "main",
+                "arm64",
+            ),
+        )
+        .with_filesystem(
+            "unstable-riscv64",
+            Debug::new(
+                "http://archive.adref/debian-debug/",
+                "unstable-debug",
+                "main",
+                "riscv64",
             ),
         )
         .build()

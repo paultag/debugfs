@@ -48,12 +48,12 @@ pub(crate) struct Debug {
 
 impl Debug {
     ///
-    pub fn new(archive_root: &str, suite: &str, component: &str) -> Self {
+    pub fn new(archive_root: &str, suite: &str, component: &str, arch: &str) -> Self {
         Debug {
             archive_root: archive_root.to_owned(),
             // suite: suite.to_owned(),
             // component: component.to_owned(),
-            packages: format!("{archive_root}/dists/{suite}/{component}/binary-amd64/Packages.xz"),
+            packages: format!("{archive_root}/dists/{suite}/{component}/binary-{arch}/Packages.xz"),
         }
     }
 }
